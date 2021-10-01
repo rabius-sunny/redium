@@ -1,8 +1,32 @@
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
+
+import Home from './pages'
+import SignIn from './pages/auth/SignIn'
+import SignUp from './pages/auth/SignUp'
+import Notfound from './pages/Notfound'
+import './styles/root.css'
 
 export default function App() {
-  return (
-    <div>
-      <p>Welcome to <strong>ReBook</strong></p>
-    </div>
-  )
+  return <>
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/sign-in">
+          <SignIn />
+        </Route>
+        <Route path="/sign-up">
+          <SignUp />
+        </Route>
+        <Route path="*">
+          <Notfound />
+        </Route>
+      </Switch>
+    </Router>
+  </>
 }
