@@ -1,43 +1,62 @@
 const formidable = require('formidable')
 const { v4: uuidv4 } = require('uuid')
 const fs = require('fs')
+const postModel = require('../models/post')
 
 module.exports.createPost = (req, res) => {
     const form = formidable({ multiples: true })
-    form.parse(req, (error, fields, files) => {
-        const { title, body, description, slug, id, user } = fields
+    form.parse(req, async (error, fields, files) => {
+        const { title, body, description, slug, id, name } = fields
         const errors = []
 
         // Form validation
-        title === '' && error.push({ message: 'Title is required' })
-        body === '' && error.push({ message: 'Body is required' })
-        description === '' && error.push({ message: 'Description is required' })
-        slug === '' && error.push({ message: 'Title is required' })
-        id === '' && error.push({ message: 'Title is required' })
-        user === '' && error.push({ message: 'Title is required' })
+        title === '' && errors.push({ message: 'Title is required' })
+        body === '' && errors.push({ message: 'Body is required' })
+        description === '' && errors.push({ message: 'Description is required' })
+        slug === '' && errors.push({ message: 'Title is required' })
+        id === '' && errors.push({ message: 'Title is required' })
+        name === '' && errors.push({ message: 'Title is required' })
 
         // Image validation
         if (!Object.keys(files).length) {
-            error.push({ message: 'Image is required' })
+            errors.push({ message: 'Image is required' })
         } else {
             const { type } = files.image
             const split = type.split('/')
             const extension = split[1].toLowerCase()
 
             if (extension !== 'jpg' && extension !== 'jpeg' && extension !== 'png') {
-                error.push({ message: `${extension} is not supported` })
+                errors.push({ message: `${extension} is not supported` })
             } else {
                 files.image.name = uuidv4() + '.' + extension
-                const newPath = __dirname + `/../client/public/images/${files.image.name}`
-                fs.copyFile(files.image.path, newPath, (error) => {
-                    if (!error) {
-                        console.log('Image Uploaded')
-                    } else console.log(error)
-                })
             }
         }
-        if (error.length) {
+        const isMatchSlug = await postModel.findOne({ slug })
+        if (isMatchSlug) {
+            errors.push({ message: 'Please choose a unique slug' })
+        }
+        if (errors.length) {
             res.status(400).json({ errors })
+        } else {
+            const newPath = __dirname + `/../client/public/images/${files.image.name}`
+            fs.copyFile(files.image.path, newPath, async (error) => {
+                if (!error) {
+                    try {
+                        const response = await postModel.create({
+                            title,
+                            body,
+                            image: files.image.name,
+                            description,
+                            slug,
+                            userName: name,
+                            userId: id
+                        })
+                        return res.status(200).json({ message: 'Post successfully created' })
+                    } catch (error) {
+                        return res.status(500).json({ errors: error, message: error.message })
+                    }
+                } else console.log(error)
+            })
         }
     })
 }
