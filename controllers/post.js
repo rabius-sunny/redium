@@ -61,7 +61,7 @@ module.exports.createPost = (req, res) => {
     })
 }
 
-module.exports.getPosts = async (req, res) => {
+module.exports.getPostsForHome = async (req, res) => {
     const page = req.params.page;
     const perPage = 6;
     const skip = (page - 1) * perPage;
