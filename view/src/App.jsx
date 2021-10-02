@@ -3,7 +3,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import Layout from './components/Layout'
+import Layout from './components/others/Layout'
 
 import Home from './pages'
 import SignIn from './pages/auth/SignIn'

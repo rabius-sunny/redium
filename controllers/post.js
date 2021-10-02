@@ -38,7 +38,7 @@ module.exports.createPost = (req, res) => {
         if (errors.length) {
             res.status(400).json({ errors })
         } else {
-            const newPath = __dirname + `/../client/public/images/${files.image.name}`
+            const newPath = __dirname + `/../view/public/images/${files.image.name}`
             fs.copyFile(files.image.path, newPath, async (error) => {
                 if (!error) {
                     try {
@@ -59,4 +59,20 @@ module.exports.createPost = (req, res) => {
             })
         }
     })
+}
+
+module.exports.getPosts = async (req, res) => {
+    const page = req.params.page;
+    const perPage = 6;
+    const skip = (page - 1) * perPage;
+    try {
+        const count = await postModel.find({}).countDocuments();
+        const posts = await postModel.find({})
+            .skip(skip)
+            .limit(perPage)
+            .sort({ updatedAt: -1 });
+        return res.status(200).json({ response: posts, count, perPage });
+    } catch (error) {
+        return res.status(500).json({ errors: error, msg: error.message });
+    }
 }
