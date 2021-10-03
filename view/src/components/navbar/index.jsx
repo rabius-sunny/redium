@@ -14,6 +14,9 @@ import MailIcon from '@mui/icons-material/Mail'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import { Appbar } from '../../utils/MUI_Customs'
+import { Link, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { LOGOUT } from '../../redux/constants/User'
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -56,6 +59,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Navbar() {
 
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const { user } = useSelector(state => state.Auth)
     const [anchorEl, setAnchorEl] = useState(null)
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
 
@@ -79,6 +85,12 @@ export default function Navbar() {
         setMobileMoreAnchorEl(event.currentTarget)
     }
 
+    const handleSignOut = () => {
+        localStorage.removeItem('myToken')
+        dispatch({ type: LOGOUT })
+        history.push('/')
+    }
+
     const menuId = 'primary-search-account-menu'
     const renderMenu = (
         <Menu
@@ -96,8 +108,8 @@ export default function Navbar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}>{user ? <Link to="/profile/me" className="nav__link">Profile</Link> : <Link className="nav__link" to="/sign-up">Create an account</Link>}</MenuItem>
+            <MenuItem onClick={handleMenuClose}>{user ? <button className="signing" onClick={handleSignOut}>Sign out</button> : <Link className="nav__link" to="/sign-in">Sign In</Link>}</MenuItem>
         </Menu>
     )
 
@@ -161,8 +173,9 @@ export default function Navbar() {
                         <Typography
                             variant="h6"
                             component="div"
+                            className="nav__title"
                         >
-                            Redium
+                            <Link to="/">Redium</Link>
                         </Typography>
                         <Search>
                             <SearchIconWrapper>

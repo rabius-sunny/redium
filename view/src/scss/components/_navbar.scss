@@ -1,3 +1,17 @@
 .nav__holder {
     background: #1976d2;
+
+    .nav__title>a {
+        color: white !important;
+    }
+}
+.nav__link {
+    color: $gray;
+}
+.signing {
+    background: none;
+    border: 0;
+    color: $gray;
+    font-size: 1rem;
+    cursor: pointer;
 }

@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { postLogin } from '../../redux/async/Auth'
+import { useHistory } from 'react-router'
 
 export default function Login() {
 
+    const history = useHistory()
     const dispatch = useDispatch()
     const { loginErrors, loading } = useSelector((state) => state.Auth)
     const [input, setInput] = useState({
@@ -19,7 +21,9 @@ export default function Login() {
     }
     const handleSubmit = () => {
         dispatch(postLogin(input))
+        localStorage.getItem('myToken') && history.push('/profile/me')
     }
+
     useEffect(() => {
         if (loginErrors.length > 0) {
             loginErrors.map((error) => toast.error(error.message || error.msg))

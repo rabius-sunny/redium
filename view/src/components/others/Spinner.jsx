@@ -1,8 +1,23 @@
+import * as React from 'react'
+import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
-import Box from '@mui/material/Box'
 
-export default function Spinner() {
-    return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <CircularProgress />
-    </Box>
+export default function Spinner({ loading }) {
+
+    const [open, setOpen] = React.useState(false);
+
+    React.useEffect(() => {
+        loading && setOpen(true)
+    }, [loading])
+
+    return (
+        <div>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
+        </div>
+    );
 }

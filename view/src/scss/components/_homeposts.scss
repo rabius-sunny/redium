@@ -1,8 +1,16 @@
+.home__posts__holder {
+    min-height: 80vh;
+
+    .post {
+        font-size: 14px;
+    }
+}
 .home__posts {
     background: $white;
     margin: 10px 0;
     border-radius: 15px;
     padding: 10px;
+    box-shadow: 0 1px 2px #a3a3a3;
 
         &__header {
             display: flex;
@@ -13,19 +21,25 @@
                 padding-left: 5px;
 
                 .name {
-                    font-weight: bold;
-                    font-size: 1.1rem;
+                    font-weight: 600;
+                    margin-top: -8px;
                 }
                 .time {
                     color: $gray;
-                    font-size: 0.8rem;
-                    font-weight: 600;
+                    font-size: 0.7rem;
+                    margin-top: -5px;
                 }
             }
+        }
+
+        &__image>img {
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
         }
 
         .title {
             margin-bottom: 8px;
         }
+
         
 }

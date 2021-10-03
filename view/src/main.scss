@@ -3,9 +3,13 @@
 // varibales
 @import 'scss/abstracts/variables';
 
+// extends
+@import 'scss/abstracts/extends';
+
 // utils
 @import 'scss/utils/utils';
 
 // components
 @import 'scss/components/navbar';
-@import 'scss/components/homeposts'
+@import 'scss/components/homeposts';
+@import 'scss/components/pagination';

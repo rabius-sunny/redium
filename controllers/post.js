@@ -63,7 +63,7 @@ module.exports.createPost = (req, res) => {
 
 module.exports.getPostsForHome = async (req, res) => {
     const page = req.params.page;
-    const perPage = 6;
+    const perPage = 4;
     const skip = (page - 1) * perPage;
     try {
         const count = await postModel.find({}).countDocuments();
@@ -72,6 +72,20 @@ module.exports.getPostsForHome = async (req, res) => {
             .limit(perPage)
             .sort({ updatedAt: -1 });
         return res.status(200).json({ response: posts, count, perPage });
+    } catch (error) {
+        return res.status(500).json({ errors: error, msg: error.message });
+    }
+}
+
+module.exports.myPosts = async (req, res) => {
+    const id = req.params.id
+    const page = req.params.page;
+    const perPage = 4;
+    const skip = (page - 1) * perPage;
+    try {
+        const count = await postModel.find({ userId: id }).countDocuments();
+        const response = await postModel.find({ userId: id }).skip(skip).limit(perPage).sort({ updatedAt: -1 })
+        return res.status(200).json({ response: response, count, perPage })
     } catch (error) {
         return res.status(500).json({ errors: error, msg: error.message });
     }

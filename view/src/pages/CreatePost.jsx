@@ -75,7 +75,7 @@ export default function CreatePost(props) {
     }
     useEffect(() => {
         if (redirect) {
-            history.push('/')
+            history.push('/profile/me')
         }
         if (createErrors.length !== 0) {
             createErrors.map((err) => toast.error(err.message))

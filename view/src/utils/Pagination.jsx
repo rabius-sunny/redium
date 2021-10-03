@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar'
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
+import { Link } from 'react-router-dom'
 
 export default function Pagination({ path, count, page, perPage }) {
 
@@ -17,8 +19,8 @@ export default function Pagination({ path, count, page, perPage }) {
 
         for (let i = startLoop; i <= endLoop; i++) {
             store.push(
-                <li key={i} className={i === page ? 'active' : ''}>
-                    <Link to={`/${path}/${i}`}>{i}</Link>
+                <li key={i} className="links">
+                    <Link to={`/${path}/${i}`}><Avatar className={parseInt(i) === parseInt(page) ? 'active' : 'deactive'}>{i}</Avatar></Link>
                 </li>
             );
         }
@@ -29,7 +31,7 @@ export default function Pagination({ path, count, page, perPage }) {
             return (
                 <li>
                     <Link to={`/${path}/${parseInt(page) + 1}`}>
-                        next
+                        <DoubleArrowIcon color="primary" fontSize="large" />
                     </Link>
                 </li>
             );
@@ -40,7 +42,7 @@ export default function Pagination({ path, count, page, perPage }) {
             return (
                 <li>
                     <Link to={`/${path}/${parseInt(page - 1)}`}>
-                        prev
+                        <DoubleArrowIcon className="left__arrow" color="primary" fontSize="large" />
                     </Link>
                 </li>
             );

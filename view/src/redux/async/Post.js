@@ -66,11 +66,12 @@ export const fetchPosts = (id, page) => {
 			}
 			const {
 				data: { response, count, perPage },
-			} = await axios.get(`/posts/${id}/${page}`, config)
+			} = await axios.get(`/my-posts/${id}/${page}`, config)
 			dispatch({ type: CLOSE_LOADER })
 			dispatch({ type: SET_POSTS, payload: { response, count, perPage } })
 		} catch (error) {
 			dispatch({ type: CLOSE_LOADER })
+			console.log(error)
 		}
 	}
 }

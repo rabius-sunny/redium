@@ -23,12 +23,12 @@ export default function Posts() {
     }, [dispatch, page]);
     console.log(posts)
     return (
-        <div>
-            {loading && <Spinner />}
+        <div className="home__posts__holder">
+            {loading && <Spinner loading={loading} />}
             {!loading &&
                 posts.map((post, i) => <div className="home__posts" key={i}>
                     <div className="home__posts__header">
-                        <div className="avatar"><AccountCircleIcon /></div>
+                        <div className="avatar"><AccountCircleIcon fontSize="large" color="primary"/></div>
                         <div className="home__posts__header__info">
                             <p className="name">{post.userName}</p>
                             <p className="time">{moment(post.updatedAt).format('MMM Do YY')}</p>
@@ -36,10 +36,13 @@ export default function Posts() {
                     </div>
                     <p className="title"><strong>{post.title}</strong></p>
                     <p className="post">{ReactHtmlParser(post.body.slice(0, 150))}...See more</p>
+                    <div className="home__posts__image">
+                        <img src={`/images/${post.image}`} alt="thumbnail" />
+                    </div>
                 </div>)
             }
             <Pagination
-                path='home'
+                path='posts'
                 page={page}
                 perPage={perPage}
                 count={count}
