@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import { homePosts } from '../../redux/async/Post';
@@ -20,8 +20,8 @@ export default function Posts() {
     useEffect(() => {
         dispatch(homePosts(page));
     }, [dispatch, page]);
-    
-    return (
+
+    return <>
         <div className="home__posts__holder">
             {loading && <Spinner loading={loading} />}
             {!loading &&
@@ -40,12 +40,12 @@ export default function Posts() {
                     </div>
                 </div>)
             }
-            <Pagination
-                path='posts'
-                page={page}
-                perPage={perPage}
-                count={count}
-            />
         </div>
-    )
+        <Pagination
+            path='posts'
+            page={page}
+            perPage={perPage}
+            count={count}
+        />
+    </>
 }

@@ -4,7 +4,6 @@ import {
   Switch
 } from 'react-router-dom'
 import Layout from './components/others/Layout'
-
 import Home from './pages'
 import SignIn from './pages/auth/SignIn'
 import SignUp from './pages/auth/SignUp'
@@ -13,11 +12,13 @@ import Notfound from './pages/Notfound'
 import MyProfile from './pages/MyProfile'
 import PrivateRoute from './components/auth/PrivateRoute'
 import Edit from './components/others/Edit'
+import { ScrollToTop } from './components/others/ScrollToTop'
 
 export default function App() {
 
   return <>
     <Router>
+      <ScrollToTop />
       <Layout>
         <Switch>
           <Route path="/" exact component={Home} />

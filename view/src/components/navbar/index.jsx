@@ -12,11 +12,11 @@ import SearchIcon from '@mui/icons-material/Search'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import MailIcon from '@mui/icons-material/Mail'
 import NotificationsIcon from '@mui/icons-material/Notifications'
-import MoreIcon from '@mui/icons-material/MoreVert'
 import { Appbar } from '../../utils/MUI_Customs'
 import { Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { LOGOUT } from '../../redux/constants/User'
+import { REMOVE_POST } from '../../redux/constants/Post'
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -81,13 +81,10 @@ export default function Navbar() {
         handleMobileMenuClose()
     }
 
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget)
-    }
-
     const handleSignOut = () => {
         localStorage.removeItem('myToken')
         dispatch({ type: LOGOUT })
+        dispatch({ type: REMOVE_POST })
         history.push('/')
     }
 
@@ -130,26 +127,6 @@ export default function Navbar() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
-                <IconButton size="large" aria-label="show 2 new mails" color="inherit">
-                    <Badge badgeContent={2} color="error">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-            <MenuItem>
-                <IconButton
-                    size="large"
-                    aria-label="show 20 new notifications"
-                    color="inherit"
-                >
-                    <Badge badgeContent={20} color="error">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     size="large"
@@ -160,13 +137,12 @@ export default function Navbar() {
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>Profile</p>
             </MenuItem>
         </Menu>
     )
 
     return (
-        <Box sx={{ flexGrow: 1 }} className="nav__holder">
+        <Box sx={{ flexGrow: 1 }} className="nav__holder" id="back-to-top-anchor">
             <div className="container__nav__footer">
                 <Appbar position="static" className="appbar">
                     <Toolbar>
@@ -220,10 +196,10 @@ export default function Navbar() {
                                 aria-label="show more"
                                 aria-controls={mobileMenuId}
                                 aria-haspopup="true"
-                                onClick={handleMobileMenuOpen}
+                                onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <MoreIcon />
+                                <AccountCircle />
                             </IconButton>
                         </Box>
                     </Toolbar>

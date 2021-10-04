@@ -4,6 +4,7 @@ import Auth from './reducers/Auth'
 import {
     Post,
     FetchPosts,
+    FetchMyPosts,
     FetchPost,
     UpdatePost,
     UpdateImage,
@@ -13,6 +14,7 @@ import UpdateName from './reducers/Profile'
 const rootReducer = combineReducers({
     Auth,
     FetchPosts,
+    FetchMyPosts,
     FetchPost,
     Post,
     UpdateName,

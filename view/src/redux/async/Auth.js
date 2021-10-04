@@ -6,6 +6,8 @@ import {
 	REGISTER_ERRORS,
 	LOGIN_ERRORS,
 } from '../constants/User'
+import { REDIRECT_TRUE } from '../constants/Post'
+
 export const postRegister = (state) => {
 	return async (dispatch) => {
 		const config = {
@@ -19,6 +21,7 @@ export const postRegister = (state) => {
 			dispatch({ type: CLOSE_LOADER })
 			localStorage.setItem('myToken', data.token)
 			dispatch({ type: SET_TOKEN, payload: data.token })
+			dispatch({ type: REDIRECT_TRUE })
 		} catch (error) {
 			dispatch({ type: CLOSE_LOADER })
 			dispatch({
@@ -41,6 +44,7 @@ export const postLogin = (state) => {
 			dispatch({ type: CLOSE_LOADER })
 			localStorage.setItem('myToken', data.token)
 			dispatch({ type: SET_TOKEN, payload: data.token })
+			dispatch({ type: REDIRECT_TRUE })
 		} catch (error) {
 			dispatch({ type: CLOSE_LOADER })
 			dispatch({ type: LOGIN_ERRORS, payload: error.response.data.errors })

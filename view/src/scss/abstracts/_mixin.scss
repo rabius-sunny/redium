@@ -1,0 +1,32 @@
+@mixin  responsive($breakpoint) {
+    @if $breakpoint == 'mobile' {
+        @media (max-width: 450px) {
+            @content;
+        }
+    }
+    @if $breakpoint == 'mediummobile' {
+        @media (max-width: 550px) {
+            @content;
+        }
+    }
+    @if $breakpoint == 'largemobile' {
+        @media (max-width: 650px) {
+            @content;
+        }
+    }
+    @if $breakpoint == 'tablet' {
+        @media (max-width: 1080px) {
+            @content;
+        }
+    }
+    @if $breakpoint == 'laptop' {
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
+    @if $breakpoint == 'desktop' {
+        @media (min-width: 1200px) {
+            @content;
+        }
+    }
+}

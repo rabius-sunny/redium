@@ -5,7 +5,8 @@ import toast, { Toaster } from 'react-hot-toast'
 import 'react-quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
 import { fetchPost, updateAction } from "../../redux/async/Post"
-import { POST_RESET } from '../../redux/constants/Post'
+import { POST_RESET, RESET_UPDATE_ERRORS } from '../../redux/constants/Post'
+import Spinner from "./Spinner"
 
 
 export default function Edit() {
@@ -38,12 +39,15 @@ export default function Edit() {
     useEffect(() => {
         if (editErrors.length !== 0) {
             editErrors.map(err => toast.error(err.msg))
+            dispatch({ type: RESET_UPDATE_ERRORS })
         }
+        // eslint-disable-next-line
     }, [editErrors])
     useEffect(() => {
         if (redirect) {
             history.push('/profile/me')
         }
+        // eslint-disable-next-line
     }, [redirect])
 
     const handleUpdate = () => {
@@ -55,39 +59,37 @@ export default function Edit() {
         }))
     }
 
-    return (
-        <div>
-            <h3>Edit Post</h3>
-            <Toaster
-                position='top-right'
-                reverseOrder={false}
-                toastOptions={{
-                    style: {
-                        fontSize: '14px',
-                    },
-                }}
-            />
+    return !loading ? <div>
+        <h3>Edit Post</h3>
+        <Toaster
+            position='top-right'
+            reverseOrder={false}
+            toastOptions={{
+                style: {
+                    fontSize: '14px',
+                },
+            }}
+        />
 
 
-            <input type="text" name="title" value={input.title} onChange={e => setInput({ ...input, title: e.target.value })} />
-            <ReactQuill
-                theme='snow'
-                id='body'
-                placeholder='Post body...'
-                value={value}
-                onChange={setValue}
-            />
-            <textarea
-                name='description'
-                id='description'
-                cols='30'
-                rows='10'
-                defaultValue={input.description}
-                onChange={e => setInput({ ...input, description: e.target.value })}
-                className='group__control'
-                placeholder='meta description...'
-                maxLength='150'></textarea>
-            <button onClick={handleUpdate}>Update</button>
-        </div>
-    )
+        <input type="text" name="title" value={input.title} onChange={e => setInput({ ...input, title: e.target.value })} />
+        <ReactQuill
+            theme='snow'
+            id='body'
+            placeholder='Post body...'
+            value={value}
+            onChange={setValue}
+        />
+        <textarea
+            name='description'
+            id='description'
+            cols='30'
+            rows='10'
+            defaultValue={input.description}
+            onChange={e => setInput({ ...input, description: e.target.value })}
+            className='group__control'
+            placeholder='meta description...'
+            maxLength='150'></textarea>
+        <button onClick={handleUpdate}>Update</button>
+    </div> : <Spinner />
 }

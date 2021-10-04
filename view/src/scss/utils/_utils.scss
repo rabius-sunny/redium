@@ -12,3 +12,11 @@
 a {
     color: $primary !important;
 }
+
+.btn-primary {
+    background: $primary !important;
+    color: $white !important;
+    &:hover {
+        background: $primary__hover !important;
+    }
+}

@@ -5,12 +5,14 @@ import { fetchPosts } from '../redux/async/Post'
 import Pagination from '../utils/Pagination'
 import toast, { Toaster } from 'react-hot-toast'
 import { REDIRECT_FALSE, REMOVE_MESSAGE } from '../redux/constants/Post'
+import EditImage from '../components/others/EditImage'
+import Spinner from '../components/others/Spinner'
 
 export default function MyProfile() {
 
     const { user: { _id } } = useSelector(state => state.Auth)
     const dispatch = useDispatch()
-    const { posts, count, perPage } = useSelector(state => state.FetchPosts)
+    const { myposts, count, perPage } = useSelector(state => state.FetchMyPosts)
     const { redirect, message, loading } = useSelector(
         (state) => state.Post
     )
@@ -44,11 +46,12 @@ export default function MyProfile() {
                     },
                 }}
             />
-            {
-                posts.map(post => <div key={post._id} style={{ display: 'flex', justifyContent: 'space-between' }}>
+            {loading ? <Spinner /> :
+                myposts.map(post => <div key={post._id} style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <h3>{post.title}</h3>
                     <div>
                         <Link to={`/edit/${post._id}`}>Edit</Link>
+                        <EditImage id={post._id} />
                         <Link>Delete</Link>
                     </div>
                 </div>)

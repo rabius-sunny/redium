@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { postRegister } from '../../redux/async/Auth'
 import { Button } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 export default function SignUp() {
 
@@ -14,10 +14,11 @@ export default function SignUp() {
         email: '',
         password: ''
     })
-    const { loading, registerErrors, user } = useSelector(
+    const { loading, registerErrors, user, redirect } = useSelector(
         (state) => state.Auth
     )
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleInput = e => {
         setInput({
@@ -32,9 +33,15 @@ export default function SignUp() {
 
     useEffect(() => {
         if (registerErrors.length > 0) {
-            registerErrors.map((error) => toast.error(error.msg))
+            registerErrors.map((error) => toast.error(error.msg || error.message))
         }
     }, [registerErrors, user])
+    useEffect(() => {
+        if (redirect) {
+            history.push('/profile/me')
+        }
+        // eslint-disable-next-line
+    }, [redirect])
 
     return (
         <div>

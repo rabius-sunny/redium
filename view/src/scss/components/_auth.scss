@@ -10,6 +10,25 @@
         border-radius: 15px;
         padding: 40px;
     }
+    @include responsive(largemobile) {
+        &__authHolder {
+            width: 500px;
+        }
+    }
+    @include responsive(mediummobile) {
+        &__authHolder {
+            width: 400px;
+            padding: 25px;
+            height: 470px;
+        }
+    }
+    @include responsive(mobile) {
+        &__authHolder {
+            width: 320px;
+            padding: 15px;
+            height: 450px;
+        }
+    }
     .login {
         height: 400px;
     }
@@ -24,6 +43,21 @@
     }
     input {
         width: 500px;
+    }
+    @include responsive(largemobile) {
+        input {
+            max-width: 400px;
+        }
+    }
+    @include responsive(mediummobile) {
+        input {
+            max-width: 330px;
+        }
+    }
+    @include responsive(mobile) {
+        input {
+            max-width: 270px;
+        }
     }
     .btn {
         background: $primary;

@@ -1,10 +1,9 @@
 @import 'scss/base/reset';
 
-// varibales
+// abstracts
 @import 'scss/abstracts/variables';
-
-// extends
 @import 'scss/abstracts/extends';
+@import 'scss/abstracts/mixin';
 
 // utils
 @import 'scss/utils/utils';

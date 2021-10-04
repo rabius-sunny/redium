@@ -9,6 +9,7 @@ import {
 	SET_MESSAGE,
 	// REMOVE_MESSAGE,
 	SET_POSTS,
+	SET_POSTS2,
 	SET_POST,
 	POST_REQUEST,
 	// EDIT_ERRORS,
@@ -68,7 +69,7 @@ export const fetchPosts = (id, page) => {
 				data: { response, count, perPage },
 			} = await axios.get(`/my-posts/${id}/${page}`, config)
 			dispatch({ type: CLOSE_LOADER })
-			dispatch({ type: SET_POSTS, payload: { response, count, perPage } })
+			dispatch({ type: SET_POSTS2, payload: { response, count, perPage } })
 		} catch (error) {
 			dispatch({ type: CLOSE_LOADER })
 			console.log(error)

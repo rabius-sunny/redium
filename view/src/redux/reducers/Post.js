@@ -8,6 +8,7 @@ import {
 	SET_MESSAGE,
 	REMOVE_MESSAGE,
 	SET_POSTS,
+	SET_POSTS2,
 	SET_POST,
 	POST_REQUEST,
 	POST_RESET,
@@ -18,6 +19,7 @@ import {
 	RESET_UPDATE_IMAGE_ERRORS,
 	SET_DETAILS,
 	COMMENTS,
+	REMOVE_POST
 } from '../constants/Post';
 const initState = {
 	loading: false,
@@ -25,6 +27,7 @@ const initState = {
 	redirect: false,
 	message: '',
 	posts: [],
+	myposts: [],
 	perPage: 0,
 	count: 0,
 	post: {},
@@ -59,6 +62,24 @@ export const Post = (state = initState, action) => {
 			...state,
 			comments: payload,
 		};
+	} else {
+		return state;
+	}
+};
+export const FetchMyPosts = (state = initState, action) => {
+	const { type, payload } = action;
+	if (type === SET_POSTS2) {
+		return {
+			...state,
+			myposts: payload.response,
+			count: payload.count,
+			perPage: payload.perPage,
+		};
+	} else if (type === REMOVE_POST) {
+		return {
+			...state,
+			myposts: []
+		}
 	} else {
 		return state;
 	}

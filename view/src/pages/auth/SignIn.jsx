@@ -10,7 +10,7 @@ export default function Login() {
 
     const history = useHistory()
     const dispatch = useDispatch()
-    const { loginErrors, loading } = useSelector((state) => state.Auth)
+    const { loginErrors, loading, redirect } = useSelector((state) => state.Auth)
     const [input, setInput] = useState({
         email: '',
         password: '',
@@ -23,15 +23,19 @@ export default function Login() {
     }
     const handleSubmit = () => {
         dispatch(postLogin(input))
-        localStorage.getItem('myToken') && history.push('/profile/me')
     }
-
     useEffect(() => {
         if (loginErrors.length > 0) {
             loginErrors.map((error) => toast.error(error.message || error.msg))
         }
     }, [loginErrors])
-
+    useEffect(() => {
+        if (redirect) {
+            history.push('/profile/me')
+        }
+        // eslint-disable-next-line
+    }, [redirect])
+    console.log(redirect)
     return (
         <>
             <Toaster

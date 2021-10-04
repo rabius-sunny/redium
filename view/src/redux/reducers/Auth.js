@@ -1,4 +1,5 @@
 import jwt_decode from 'jwt-decode'
+import { REDIRECT_FALSE, REDIRECT_TRUE } from '../constants/Post'
 import {
 	SET_LOADER,
 	CLOSE_LOADER,
@@ -13,6 +14,7 @@ const initState = {
 	loginErrors: [],
 	token: '',
 	user: '',
+	redirect: false
 }
 const decodeToken = (token) => {
 	const decodedToken = jwt_decode(token)
@@ -50,6 +52,10 @@ const Auth = (state = initState, action) => {
 			...state,
 			loginErrors: action.payload,
 		}
+	} else if (action.type === REDIRECT_TRUE) {
+		return { ...state, redirect: true };
+	} else if (action.type === REDIRECT_FALSE) {
+		return { ...state, redirect: false };
 	} else {
 		return state
 	}

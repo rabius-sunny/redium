@@ -5,6 +5,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { createAction } from '../redux/async/Post'
 import 'react-quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
+import { Button } from '@mui/material'
 
 export default function CreatePost(props) {
 
@@ -80,6 +81,7 @@ export default function CreatePost(props) {
         if (createErrors.length !== 0) {
             createErrors.map((err) => toast.error(err.message))
         }
+        // eslint-disable-next-line
     }, [createErrors, redirect])
 
 
@@ -157,7 +159,7 @@ export default function CreatePost(props) {
             )}
             {imagePreview ? <img src={imagePreview} alt="preview" /> : ''}
 
-            <button onClick={createPost}>create post</button>
+            <Button color="primary" onClick={createPost}>{loading ? '...' : 'create post'}</Button>
         </>
     )
 }
