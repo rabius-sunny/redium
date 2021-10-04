@@ -91,7 +91,7 @@ export const fetchPost = (id) => {
 				data: { post },
 			} = await axios.get(`/post/${id}`, config)
 			dispatch({ type: CLOSE_LOADER })
-			dispatch({ type: SET_POST, payload: post })
+			dispatch({ type: SET_POST, payload: post[0] })
 			dispatch({ type: POST_REQUEST })
 		} catch (error) {
 			dispatch({ type: CLOSE_LOADER })
@@ -99,7 +99,7 @@ export const fetchPost = (id) => {
 		}
 	}
 }
-export const updateAction = (editData) => {
+export const updateAction = (editedData) => {
 	return async (dispatch, getState) => {
 		const {
 			Auth: { token },
@@ -111,7 +111,7 @@ export const updateAction = (editData) => {
 		}
 		dispatch({ type: SET_LOADER })
 		try {
-			const { data } = await axios.post('/update', editData, config)
+			const { data } = await axios.post('/update', editedData, config)
 			dispatch({ type: CLOSE_LOADER })
 			dispatch({ type: REDIRECT_TRUE })
 			dispatch({ type: SET_MESSAGE, payload: data.message })
@@ -123,7 +123,6 @@ export const updateAction = (editData) => {
 			} = error
 			dispatch({ type: CLOSE_LOADER })
 			dispatch({ type: SET_UPDATE_ERRORS, payload: errors })
-			console.log(error.response)
 		}
 	}
 }

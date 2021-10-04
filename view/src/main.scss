@@ -8,8 +8,10 @@
 
 // utils
 @import 'scss/utils/utils';
+@import 'scss/utils/spacing';
 
 // components
 @import 'scss/components/navbar';
 @import 'scss/components/homeposts';
 @import 'scss/components/pagination';
+@import 'scss/components/auth';

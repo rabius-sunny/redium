@@ -1,0 +1,35 @@
+.authBox {
+    @extend %flex__center;
+    height: 90vh;
+
+    &__authHolder {
+        background: white;
+        box-shadow: 0 1px 2px #a3a3a3;
+        width: 600px;
+        height: 500px;
+        border-radius: 15px;
+        padding: 40px;
+    }
+    .login {
+        height: 400px;
+    }
+
+    h1 {
+        color: $primary;
+        text-align: center;
+        font-size: 3rem;
+    }
+    .input {
+        width: 100%;
+    }
+    input {
+        width: 500px;
+    }
+    .btn {
+        background: $primary;
+        margin-top: 25px;
+        &:hover {
+            background: $primary__hover;
+        }
+    }
+}

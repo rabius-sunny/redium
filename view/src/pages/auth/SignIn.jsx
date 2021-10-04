@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { postLogin } from '../../redux/async/Auth'
 import { useHistory } from 'react-router'
+import { Button, TextField } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
 
@@ -32,7 +34,6 @@ export default function Login() {
 
     return (
         <>
-            <h1>User Login</h1>
             <Toaster
                 position='top-right'
                 reverseOrder={false}
@@ -43,10 +44,15 @@ export default function Login() {
                 }}
             />
 
-            <input type="text" onChange={handleInput} placeholder="email" name="email" />
-            <input type="text" onChange={handleInput} placeholder="password" name="password" />
-
-            <button style={{background: 'white', padding: '20px 40px'}} onClick={handleSubmit}>{loading ? '...' : 'Login'}</button>
+            <div className="authBox">
+                <div className="authBox__authHolder login">
+                    <h1>Sign In</h1>
+                    <div className="p-1 pb-2 mx-auto input"><TextField variant="standard" type="text" onChange={handleInput} placeholder="email" name="email" /></div>
+                    <div className="p-1 pb-2 mx-auto input"><TextField variant="standard" type="password" onChange={handleInput} placeholder="password" name="password" /></div>
+                    <div className="input pb-1">Not a user? <Link to="/sign-up">Sign up</Link></div>
+                    <Button variant="contained" className="input btn" onClick={handleSubmit}>{loading ? '...' : 'Sign In'}</Button>
+                </div>
+            </div>
 
         </>
     )

@@ -1,6 +1,5 @@
 .home__posts__holder {
     min-height: 80vh;
-
     .post {
         font-size: 14px;
     }
@@ -29,6 +28,16 @@
                     font-size: 0.7rem;
                     margin-top: -5px;
                 }
+            }
+            .avatar {
+                background: $primary;
+                color: $white;
+                height: 40px;
+                width: 40px;
+                border-radius: 20px;
+                font-size: 1.5rem;
+                font-weight: 300;
+                @extend %flex__center;
             }
         }
 

@@ -168,7 +168,7 @@ export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }} className="nav__holder">
             <div className="container__nav__footer">
-                <Appbar position="static">
+                <Appbar position="static" className="appbar">
                     <Toolbar>
                         <Typography
                             variant="h6"

@@ -57,5 +57,5 @@ export default function Pagination({ path, count, page, perPage }) {
         </div>
     ) : (
         ''
-    );
+    )
 };

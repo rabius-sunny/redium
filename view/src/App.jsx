@@ -12,6 +12,7 @@ import CreatePost from './pages/CreatePost'
 import Notfound from './pages/Notfound'
 import MyProfile from './pages/MyProfile'
 import PrivateRoute from './components/auth/PrivateRoute'
+import Edit from './components/others/Edit'
 
 export default function App() {
 
@@ -30,6 +31,8 @@ export default function App() {
           <PrivateRoute path="/profile/me/:post?" component={MyProfile} />
 
           <PrivateRoute path="/create" component={CreatePost} />
+
+          <PrivateRoute path="/edit/:id" component={Edit} />
 
           <Route path="*" component={Notfound} />
 

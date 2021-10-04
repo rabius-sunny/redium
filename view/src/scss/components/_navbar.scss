@@ -1,8 +1,12 @@
 .nav__holder {
-    background: #1976d2;
+    background: $primary;
 
     .nav__title>a {
         color: white !important;
+    }
+
+    .appbar {
+        background: $primary;
     }
 }
 .nav__link {

@@ -5,7 +5,6 @@ import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import { homePosts } from '../../redux/async/Post';
 import Pagination from '../../utils/Pagination';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Spinner from '../others/Spinner'
 
 export default function Posts() {
@@ -21,14 +20,14 @@ export default function Posts() {
     useEffect(() => {
         dispatch(homePosts(page));
     }, [dispatch, page]);
-    console.log(posts)
+    
     return (
         <div className="home__posts__holder">
             {loading && <Spinner loading={loading} />}
             {!loading &&
                 posts.map((post, i) => <div className="home__posts" key={i}>
                     <div className="home__posts__header">
-                        <div className="avatar"><AccountCircleIcon fontSize="large" color="primary"/></div>
+                        <div className="avatar"><span>{post.userName[0]}</span></div>
                         <div className="home__posts__header__info">
                             <p className="name">{post.userName}</p>
                             <p className="time">{moment(post.updatedAt).format('MMM Do YY')}</p>
