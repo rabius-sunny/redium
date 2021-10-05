@@ -142,7 +142,7 @@ export const updateImageAction = (updateData) => {
 		try {
 			const {
 				data: { message },
-			} = await axios.post('/updateImage', updateData, config)
+			} = await axios.post('/update-image', updateData, config)
 			dispatch({ type: CLOSE_LOADER })
 			dispatch({ type: REDIRECT_TRUE })
 			dispatch({ type: SET_MESSAGE, payload: message })

@@ -1,68 +1,66 @@
-import { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-// import { useParams, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import toast, { Toaster } from 'react-hot-toast';
+import { useState, useEffect } from 'react'
+import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+// import { useParams, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import toast, { Toaster } from 'react-hot-toast'
 import { updateImageAction } from '../../redux/async/Post'
 import { RESET_UPDATE_IMAGE_ERRORS } from '../../redux/constants/Post'
 
 export default function EditImage({ id }) {
 
-    const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
-    const { updateImageErrors } = useSelector((state) => state.UpdateImage);
-    const { redirect } = useSelector((state) => state.Post);
-    const [state, setState] = useState({
+    const dispatch = useDispatch()
+    const [open, setOpen] = useState(false)
+    const { updateImageErrors } = useSelector(state => state.UpdateImage)
+    const { redirect } = useSelector(state => state.Post)
+    const [input, setInput] = useState({
         image: '',
         imagePreview: '',
         imageName: 'Choose image',
-    });
+    })
     const handleClickOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
 
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
     const fileHandle = e => {
         if (e.target.files.length !== 0) {
-            const reader = new FileReader();
+            const reader = new FileReader()
             reader.onloadend = () => {
-                setState({
-                    ...state,
+                setInput({
+                    ...input,
                     imagePreview: reader.result,
                     image: e.target.files[0],
                     imageName: e.target.files[0].name,
-                });
-            };
-            reader.readAsDataURL(e.target.files[0]);
+                })
+            }
+            reader.readAsDataURL(e.target.files[0])
         }
-    };
+    }
     const updateImage = () => {
-        const formData = new FormData();
-        formData.append('id', id);
-        formData.append('image', state.image);
-        dispatch(updateImageAction(formData));
-    };
+        const formData = new FormData()
+        formData.append('id', id)
+        formData.append('image', input.image)
+        dispatch(updateImageAction(formData))
+    }
     useEffect(() => {
         if (updateImageErrors.length !== 0) {
-            updateImageErrors.map((error) => toast.error(error.msg));
-            dispatch({ type: RESET_UPDATE_IMAGE_ERRORS });
+            updateImageErrors.map((error) => toast.error(error.message))
+            dispatch({ type: RESET_UPDATE_IMAGE_ERRORS })
         }
         // eslint-disable-next-line
-    }, [updateImageErrors]);
+    }, [updateImageErrors])
     useEffect(() => {
         if (redirect) {
             setOpen(false)
         }
-    }, [redirect]);
-
-
+    }, [redirect])
 
     return (
         <div>
@@ -94,7 +92,7 @@ export default function EditImage({ id }) {
                     <div className="image__update">
                         <div className=''>
                             <label htmlFor='image' className='image__label'>
-                                {state.imageName}
+                                {input.imageName}
                             </label>
                             <input
                                 type='file'
@@ -105,7 +103,7 @@ export default function EditImage({ id }) {
                         </div>
                         <div className=''>
                             <div className='imagePreivew'>
-                                {state.imagePreview ? <img src={state.imagePreview} alt="preview" /> : ''}
+                                {input.imagePreview ? <img src={input.imagePreview} alt="preview" /> : ''}
                             </div>
                         </div>
                     </div>
@@ -118,5 +116,5 @@ export default function EditImage({ id }) {
                 </DialogActions>
             </Dialog>
         </div>
-    );
+    )
 }

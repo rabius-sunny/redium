@@ -136,3 +136,38 @@ module.exports.updatePost = async (req, res) => {
         }
     }
 }
+
+module.exports.updateImage = async (req, res) => {
+    const form = formidable({ multiples: true })
+    form.parse(req, (errors, fields, files) => {
+        const { id } = fields
+        const imageErrors = []
+        if (Object.keys(files).length === 0) {
+            imageErrors.push({ message: 'Please select an image' })
+        } else {
+            const { type } = files.image
+            const split = type.split('/')
+            const extension = split[1].toLowerCase()
+            if (extension !== 'jpg' && extension !== 'jpeg' && extension !== 'png') {
+                imageErrors.push({ message: `${extension} is not a valid extension, please choose among png, jpg and jpeg instead.` })
+            } else {
+                files.image.name = uuidv4() + '.' + extension
+            }
+
+        } if (imageErrors.length !== 0) {
+            return res.status(400).json({ errors: imageErrors })
+        } else {
+            const newPath = __dirname + `/../view/public/images/${files.image.name}`
+            fs.copyFile(files.image.path, newPath, async (error) => {
+                if (!error) {
+                    try {
+                        const response = await postModel.findByIdAndUpdate(id, { image: files.image.name })
+                        return res.status(200).json({ message: 'Your Image has been updated' })
+                    } catch (error) {
+                        return res.status(500).json({ errors: error, message: error.message });
+                    }
+                }
+            })
+        }
+    })
+}
