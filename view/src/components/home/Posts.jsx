@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import { homePosts } from '../../redux/async/Post';
@@ -33,7 +33,7 @@ export default function Posts() {
                             <p className="time">{moment(post.updatedAt).format('MMM Do YY')}</p>
                         </div>
                     </div>
-                    <p className="title"><strong>{post.title}</strong></p>
+                    <p className="title"><strong><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></strong></p>
                     <p className="post">{ReactHtmlParser(post.body.slice(0, 150))}...See more</p>
                     <div className="home__posts__image">
                         <img src={`/images/${post.image}`} alt="thumbnail" />

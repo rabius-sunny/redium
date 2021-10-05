@@ -2,6 +2,7 @@ const formidable = require('formidable')
 const { v4: uuidv4 } = require('uuid')
 const fs = require('fs')
 const postModel = require('../models/post')
+const commentModel = require('../models/comment')
 const { body, validationResult } = require('express-validator')
 const { htmlToText } = require('html-to-text')
 
@@ -170,4 +171,31 @@ module.exports.updateImage = async (req, res) => {
             })
         }
     })
+}
+
+module.exports.postDetails = async (req, res) => {
+    const id = req.params.id
+
+    try {
+        const post = await postModel.findOne({ slug: id })
+        return res.status(200).json({ post })
+    } catch (error) {
+        return res.status(500).json({ errors: error, message: error.message });
+    }
+
+}
+
+module.exports.postComment = async (req, res) => {
+    const { id, comment, userName } = req.body
+
+    try {
+        const response = await commentModel.create({
+            postId: id,
+            comment,
+            userName
+        })
+        return res.status(200).json({ message: 'Your comment has been published successfully' })
+    } catch (error) {
+        return res.status(500).json({ errors: error, message: error.message });
+    }
 }

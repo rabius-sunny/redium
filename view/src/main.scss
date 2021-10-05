@@ -1,4 +1,3 @@
-@import 'scss/base/reset';
 
 // abstracts
 @import 'scss/abstracts/variables';
@@ -14,3 +13,6 @@
 @import 'scss/components/homeposts';
 @import 'scss/components/pagination';
 @import 'scss/components/auth';
+
+// stylesheet resets
+@import 'scss/base/reset';

@@ -13,6 +13,7 @@ import MyProfile from './pages/MyProfile'
 import PrivateRoute from './components/auth/PrivateRoute'
 import Edit from './components/others/Edit'
 import { ScrollToTop } from './components/others/ScrollToTop'
+import Details from './components/home/Details'
 
 export default function App() {
 
@@ -24,6 +25,8 @@ export default function App() {
           <Route path="/" exact component={Home} />
 
           <Route path="/posts/:page" exact component={Home} />
+          
+          <Route path="/detail-post/:postSlug" exact component={Details} />
 
           <Route path="/sign-in" component={SignIn} />
 

@@ -34,7 +34,7 @@
     }
 
     h1 {
-        color: $primary;
+        color: $secondary;
         text-align: center;
         font-size: 3rem;
     }
@@ -60,10 +60,10 @@
         }
     }
     .btn {
-        background: $primary;
+        background: $secondary;
         margin-top: 25px;
         &:hover {
-            background: $primary__hover;
+            background: $secondary__hover;
         }
     }
 }

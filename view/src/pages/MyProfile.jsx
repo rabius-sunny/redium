@@ -23,7 +23,8 @@ export default function MyProfile() {
 
     useEffect(() => {
         dispatch(fetchPosts(_id, post))
-    }, [_id, post, dispatch])
+        // eslint-disable-next-line
+    }, [_id, post])
     useEffect(() => {
         if (redirect) {
             dispatch({ type: REDIRECT_FALSE })
@@ -32,7 +33,8 @@ export default function MyProfile() {
             toast.success(message)
             dispatch({ type: REMOVE_MESSAGE })
         }
-    }, [message, redirect, dispatch])
+        // eslint-disable-next-line
+    }, [message, redirect])
 
     return (
         <div>
@@ -48,7 +50,7 @@ export default function MyProfile() {
             />
             {loading ? <Spinner /> :
                 myposts.map(post => <div key={post._id} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <h3>{post.title}</h3>
+                    <h3><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></h3>
                     <div>
                         <Link to={`/edit/${post._id}`}>Edit</Link>
                         <EditImage id={post._id} />
