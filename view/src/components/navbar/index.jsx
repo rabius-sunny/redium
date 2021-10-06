@@ -106,7 +106,7 @@ export default function Navbar() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>{user ? <Link to="/profile/me" className="nav__link">Profile</Link> : <Link className="nav__link" to="/sign-up">Create an account</Link>}</MenuItem>
-            <MenuItem onClick={handleMenuClose}>{user ? <button className="signing" onClick={handleSignOut}>Sign out</button> : <Link className="nav__link" to="/sign-in">Sign In</Link>}</MenuItem>
+            <MenuItem onClick={handleMenuClose}>{user ? <button className="signing nav__link" onClick={handleSignOut}>Sign out</button> : <Link className="nav__link" to="/sign-in">Sign In</Link>}</MenuItem>
         </Menu>
     )
 
@@ -135,7 +135,7 @@ export default function Navbar() {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <AccountCircle />
+                    <AccountCircle className="icon" />
                 </IconButton>
             </MenuItem>
         </Menu>
@@ -158,6 +158,7 @@ export default function Navbar() {
                                 <SearchIcon />
                             </SearchIconWrapper>
                             <StyledInputBase
+                                className="search"
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}
                             />
@@ -187,7 +188,7 @@ export default function Navbar() {
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle />
+                                <AccountCircle className="icon" />
                             </IconButton>
                         </Box>
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

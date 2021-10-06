@@ -87,6 +87,7 @@ export default function MyProfile() {
                 page={post}
                 perPage={perPage}
                 path="profile/me"
+                loading={loading}
             />
         </div>
     )

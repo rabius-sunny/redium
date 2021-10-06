@@ -1,6 +1,6 @@
 .pagination {
     @extend %flex__center;
-
+    margin-top: 30px;
     li {
         list-style: none;
         margin: 0 10px;

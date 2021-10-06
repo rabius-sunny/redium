@@ -3,6 +3,7 @@
 
     .nav__title>a {
         color: white !important;
+        font-size: 2.5rem;
     }
 
     .appbar {
@@ -10,12 +11,25 @@
     }
 }
 .nav__link {
-    color: $gray;
+    color: $secondary;
+    font-size: 1.8rem;
+}
+@include responsive(largemobile) {
+    .nav__link {
+        font-size: 1.4rem;
+    }
 }
 .signing {
     background: none;
     border: 0;
-    color: $gray;
-    font-size: 1rem;
     cursor: pointer;
+    padding-left: 0 !important;
+}
+.search {
+    font-size: 1.8rem !important;
+}
+@include responsive(largemobile) {
+    .search {
+        font-size: 1.4rem !important;
+    }
 }

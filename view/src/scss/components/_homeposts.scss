@@ -9,10 +9,19 @@
     box-shadow: 0 1px 2px #a3a3a3;
 
         .post {
-            font-size: 14px;
+            font-size: 1.8rem;
             color: $dark_gray;
             max-width: 100%;
-            overflow: hidden;
+        }
+        @include responsive(tablet) {
+            .post {
+                font-size: 1.6rem;
+            }
+        }
+        @include responsive(largemobile) {
+            .post {
+                font-size: 1.4rem;
+            }
         }
     
         &__header {
@@ -26,6 +35,7 @@
                 
                 .name {
                         font-weight: 600;
+                        font-size: 1.8rem;
                         margin-top: -8px;
                     }
                 }
@@ -40,15 +50,18 @@
             margin-bottom: 8px;
                 strong>a {
                     color: $dark_gray !important;
+                    font-size: 2rem;
                 }
         }
     }
     .detail__post {
         padding: 10px 0 !important;
+
             .title {
-                background-color: $secondary;
-                color: $white;
-                font-size: 1.5rem;
+                border-left: 5px solid $secondary;
+                color: $secondary;
+                background-color: #1cd6b12a;
+                font-size: 1.8rem;
                 font-weight: 300;
                 margin-top: -6px;
                 padding: 8px;
@@ -78,8 +91,13 @@
                 -45deg);
                 color: $white;
                 font-weight: 600;
-                font-size: 1.8rem;
+                font-size: 2.5rem;
+                opacity: 1;
         }
+}
+.top {
+    opacity: 0.8;
+    cursor: pointer;
 }
 .avatar::before {
     content: '';
@@ -97,29 +115,10 @@
 }
 .time {
     color: $gray;
-    font-size: 0.7rem;
+    font-size: 1.2rem;
     margin-top: -3px;
 }
-.comments__holder {
-    margin: 20px 0;
-    
-    hr {
-        color: $gray;
-    }
-    .comments {
-        display: flex;
-        margin: 10px 0;
-        padding: 10px;
-
-        .comment {
-            background-color: $white;
-            width: 100%;
-            border-radius: 15px;
-            padding: 5px 10px;
-        }
-        .avatar {
-            margin-right: 10px;
-            margin-top: 3px;
-        }
-    }
+#circuler {
+        height: 100px !important;
+        width: 100px !important;
 }

@@ -2,7 +2,7 @@ import Avatar from '@mui/material/Avatar'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
 import { Link } from 'react-router-dom'
 
-export default function Pagination({ path, count, page, perPage }) {
+export default function Pagination({ path, count, page, perPage, loading }) {
 
     let totalPages = Math.ceil(count / perPage);
     let startLoop = page;
@@ -49,7 +49,7 @@ export default function Pagination({ path, count, page, perPage }) {
         }
     };
 
-    return (isNaN(totalPages) || count < 3) ? '' : (
+    return (isNaN(totalPages) || count < 3 || loading) ? '' : (
         <div className='pagination'>
             {prev()}
             {links()}

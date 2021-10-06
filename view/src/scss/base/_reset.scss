@@ -1,7 +1,10 @@
 * {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
 }
 
 body {
@@ -16,4 +19,8 @@ img {
 a {
     text-decoration: none;
     color: $secondary !important;
+}
+
+svg {
+    font-size: 2.5rem !important;
 }

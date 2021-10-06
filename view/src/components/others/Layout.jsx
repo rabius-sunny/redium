@@ -1,7 +1,6 @@
 import Navbar from '../navbar'
 import Footer from '../footer'
 import { ScrollTop } from './ScrollToTop'
-import { Fab } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import MUITheme from '../../utils/MUITheme'
 
@@ -15,9 +14,9 @@ export default function Layout(props) {
             </main>
         </div>
         <ScrollTop {...props}>
-            <Fab color="secondary" size="small" aria-label="scroll back to top">
-                <KeyboardArrowUpIcon />
-            </Fab>
+            <div className="avatar top">
+                <KeyboardArrowUpIcon className="avatarText fs-28" />
+            </div>
         </ScrollTop>
         <footer><Footer /></footer>
     </MUITheme>

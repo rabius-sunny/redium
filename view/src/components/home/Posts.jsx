@@ -23,7 +23,7 @@ export default function Posts() {
 
     return <>
         <div className="home__posts__holder">
-            {loading && <Spinner loading={loading} />}
+            {loading && <Spinner />}
             {!loading &&
                 posts.map((post, i) => <div className="home__posts" key={i}>
                     <div className="home__posts__header">
@@ -36,7 +36,7 @@ export default function Posts() {
                     <p className="title"><strong><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></strong></p>
                     <p className="post">{ReactHtmlParser(post.body.slice(0, 150))}<Link to={`/detail-post/${post.slug}`}>...See more</Link></p>
                     <div className="home__posts__image">
-                        <img src={`/images/${post.image}`} alt="thumbnail" />
+                        <Link to={`/detail-post/${post.slug}`}><img src={`/images/${post.image}`} alt="thumbnail" /></Link>
                     </div>
                 </div>)
             }
@@ -46,6 +46,7 @@ export default function Posts() {
             page={page}
             perPage={perPage}
             count={count}
+            loading={loading}
         />
     </>
 }

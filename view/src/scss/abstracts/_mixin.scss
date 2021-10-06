@@ -1,3 +1,4 @@
+// mixin for responsiveness
 @mixin  responsive($breakpoint) {
     @if $breakpoint == 'mobile' {
         @media (max-width: 450px) {
@@ -28,5 +29,12 @@
         @media (min-width: 1200px) {
             @content;
         }
+    }
+}
+
+// mixin for font size
+@for $f from 1 through 30 {
+    .fs-#{$f} {
+        font-size: $f + 10px !important;
     }
 }
