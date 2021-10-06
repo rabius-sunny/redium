@@ -4,7 +4,7 @@ export default function Comments({ comments }) {
 
     return !comments.length ?
         <div>
-            <p>No comments</p>
+            <p className="fs-8 mb-3 mt-2">No comment</p>
         </div> :
         <div className="comments__holder">
             <hr />

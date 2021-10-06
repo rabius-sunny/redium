@@ -81,13 +81,13 @@ export default function SignUp() {
                                         aria-label="toggle password visibility"
                                         onClick={() => setShowPassword(!showPassword)}
                                     >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {showPassword ? <VisibilityOff color="error" /> : <Visibility color="secondary" />}
                                     </IconButton>
                                 </InputAdornment>
                             }
                         /></div>
-                        <div className="input pb-1">Already has an account? <Link to="/sign-in">Sign in</Link></div>
-                        <Button variant="contained" className="input btn" onClick={handleSubmit}>{loading ? '...' : 'Sign Up'}</Button>
+                        <div className="input fs-8 pb-1">Already has an account? <Link to="/sign-in">Sign in</Link></div>
+                        <Button variant="contained" className="input btn fs-8" onClick={handleSubmit}>{loading ? '...' : 'Sign Up'}</Button>
                     </Box>
                 </div>
             </div>

@@ -75,7 +75,6 @@
 
 .avatar {
     background: transparent;
-    // color: $white;
     height: 40px;
     width: 40px;
     border-radius: 20px;
@@ -99,6 +98,10 @@
     opacity: 0.8;
     cursor: pointer;
 }
+.topFav {
+    background: none !important;
+    box-shadow: none !important;
+}
 .avatar::before {
     content: '';
     height: 40px;
@@ -115,8 +118,7 @@
 }
 .time {
     color: $gray;
-    font-size: 1.2rem;
-    margin-top: -3px;
+    font-size: 1.1rem;
 }
 #circuler {
         height: 100px !important;

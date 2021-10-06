@@ -25,11 +25,11 @@ const Search = styled('div')(({ theme }) => ({
     '&:hover': {
         backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
     marginLeft: '20px',
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
+        marginLeft: theme.spacing(5),
         width: 'auto',
     },
 }))
@@ -63,22 +63,15 @@ export default function Navbar() {
     const dispatch = useDispatch()
     const { user } = useSelector(state => state.Auth)
     const [anchorEl, setAnchorEl] = useState(null)
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
 
     const isMenuOpen = Boolean(anchorEl)
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget)
     }
 
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null)
-    }
-
     const handleMenuClose = () => {
         setAnchorEl(null)
-        handleMobileMenuClose()
     }
 
     const handleSignOut = () => {
@@ -111,35 +104,6 @@ export default function Navbar() {
     )
 
     const mobileMenuId = 'primary-search-account-menu-mobile'
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle className="icon" />
-                </IconButton>
-            </MenuItem>
-        </Menu>
-    )
 
     return (
         <Box sx={{ flexGrow: 1 }} className="nav__holder" id="back-to-top-anchor">
@@ -188,7 +152,7 @@ export default function Navbar() {
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle className="icon" />
+                                { user ? <div className="profile">{user.name[0]}</div> : <AccountCircle className="icon" />}
                             </IconButton>
                         </Box>
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -200,13 +164,12 @@ export default function Navbar() {
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle />
+                                { user ? <div className="profile">{user.name[0]}</div> : <AccountCircle className="icon" />}
                             </IconButton>
                         </Box>
                     </Toolbar>
                 </Appbar>
             </div>
-            {renderMobileMenu}
             {renderMenu}
         </Box>
     )

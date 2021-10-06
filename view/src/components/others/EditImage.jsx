@@ -84,12 +84,13 @@ export default function EditImage({ id }) {
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                className="fs-8"
             >
-                <DialogTitle id="alert-dialog-title">
+                <DialogTitle className="fs-8" id="alert-dialog-title">
                     {"Change the image"}
                 </DialogTitle>
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
+                    <DialogContentText className="fs-4" id="alert-dialog-description">
                         Choose an image (jpg, png, jpeg) and get preview.
                     </DialogContentText>
                     <div className="image__update">
@@ -112,8 +113,8 @@ export default function EditImage({ id }) {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button className="btn-primary" onClick={handleClose} autoFocus>Cancel</Button>
-                    <Button className="btn-primary" onClick={updateImage} >
+                    <Button className="btn-primary fs-6" onClick={handleClose} autoFocus>Cancel</Button>
+                    <Button className="btn-primary fs-6" onClick={updateImage} >
                         Update
                     </Button>
                 </DialogActions>

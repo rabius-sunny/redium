@@ -61,7 +61,7 @@ export default function MyProfile() {
     }, [message, redirect])
 
     return (
-        <div>
+        <div className="myProfile">
             <h1>My Profile</h1>
             <Toaster
                 position='top-center'
@@ -73,9 +73,9 @@ export default function MyProfile() {
                 }}
             />
             {loading ? <Spinner /> :
-                myposts.map(post => <div key={post._id} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <h3><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></h3>
-                    <div>
+                myposts.map(post => <div key={post._id} className="myPost">
+                    <p><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></p>
+                    <div className="actions">
                         <Link to={`/edit/${post._id}`}><Tooltip title="Edit this post"><Button><EditIcon color="secondary" /></Button></Tooltip></Link>
                         <EditImage id={post._id} />
                         <Tooltip title="Delete this post"><Button onClick={() => handleDelete(post._id)}><DeleteForeverIcon color="error" /></Button></Tooltip>

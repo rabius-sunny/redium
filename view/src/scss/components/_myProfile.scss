@@ -1,0 +1,35 @@
+.myProfile {
+    h1 {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 3rem;
+        color: $secondary;
+    }
+
+    .myPost {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid $primary;
+
+        p {
+            font-size: 2rem;
+            font-weight: 300;
+        }
+        @include responsive(largemobile) {
+            p {
+                font-size: 1.6rem;
+            }
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
+@include responsive(tablet) {
+    .myProfile {
+        padding: 0 10px;
+    }
+}

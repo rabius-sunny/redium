@@ -16,8 +16,13 @@ export default function Details() {
 
     const handleComment = e => {
         e.preventDefault()
+        if (comment === '') {
+            alert('Enter your comment please!')
+            return
+        }
         dispatch(postComment({ id: details._id, comment, userName: user.name }))
         setComment('')
+        dispatch(postDetails(postSlug))
     }
 
     useEffect(() => {
@@ -28,12 +33,12 @@ export default function Details() {
     return (
         <div>
             {
-                loading ? <Spinner /> : <div className="">
+                loading ? <Spinner /> : <div>
                     <SinglePost post={details} />
                     <Comments comments={comments} />
                     {
                         user && <div>
-                            <form onSubmit={handleComment}><input value={comment} onChange={e => setComment(e.target.value)} type="text" placeholder="type a comment and hit enter" /></form>
+                            <form className="commentBox" onSubmit={handleComment}><input value={comment} onChange={e => setComment(e.target.value)} type="text" placeholder="type a comment and hit enter" /></form>
                         </div>
                     }
                 </div>

@@ -54,8 +54,8 @@ export default function Login() {
             <div className="authBox">
                 <div className="authBox__authHolder login">
                     <h1>Sign In</h1>
-                    <div className="p-1 pb-2 mx-auto input"><TextField variant="standard" type="text" onChange={handleInput} placeholder="email" name="email" /></div>
-                    <div className="p-1 pb-2 mx-auto input"><Input
+                    <div className="p-1 pb-3 mx-auto input"><TextField variant="standard" type="text" onChange={handleInput} placeholder="email" name="email" /></div>
+                    <div className="p-1 pb-3 mx-auto input"><Input
                         variant="standard"
                         type={showPassword ? 'text' : 'password'}
                         onChange={handleInput}
@@ -68,13 +68,13 @@ export default function Login() {
                                     aria-label="toggle password visibility"
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    {showPassword ? <VisibilityOff color="error" /> : <Visibility color="secondary" />}
                                 </IconButton>
                             </InputAdornment>
                         }
                     /></div>
-                    <div className="input pb-1">Not a user? <Link to="/sign-up">Sign up</Link></div>
-                    <Button variant="contained" className="input btn" onClick={handleSubmit}>{loading ? '...' : 'Sign In'}</Button>
+                    <div className="input fs-8 pb-1">Not a user? <Link to="/sign-up">Sign up</Link></div>
+                    <Button variant="contained" className="input btn fs-8" onClick={handleSubmit}>{loading ? '...' : 'Sign In'}</Button>
                 </div>
             </div>
 

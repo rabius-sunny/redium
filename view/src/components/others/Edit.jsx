@@ -7,6 +7,7 @@ import ReactQuill from 'react-quill'
 import { fetchPost, updateAction } from "../../redux/async/Post"
 import { POST_RESET, RESET_UPDATE_ERRORS } from '../../redux/constants/Post'
 import Spinner from "./Spinner"
+import { Button } from "@mui/material"
 
 
 export default function Edit() {
@@ -59,7 +60,7 @@ export default function Edit() {
         }))
     }
 
-    return !loading ? <div>
+    return !loading ? <div className="editPost">
         <h3>Edit Post</h3>
         <Toaster
             position='top-right'
@@ -72,9 +73,11 @@ export default function Edit() {
         />
 
 
-        <input type="text" name="title" value={input.title} onChange={e => setInput({ ...input, title: e.target.value })} />
+        <label htmlFor="title">Edit Title</label>
+        <input type="text" id="title" name="title" value={input.title} onChange={e => setInput({ ...input, title: e.target.value })} />
         <ReactQuill
             theme='snow'
+            className="quill"
             id='body'
             placeholder='Post body...'
             value={value}
@@ -83,13 +86,13 @@ export default function Edit() {
         <textarea
             name='description'
             id='description'
-            cols='30'
-            rows='10'
-            defaultValue={input.description}
+            rows='5'
+            value={input.description}
             onChange={e => setInput({ ...input, description: e.target.value })}
             className='group__control'
             placeholder='meta description...'
             maxLength='150'></textarea>
-        <button onClick={handleUpdate}>Update</button>
+
+        <div className="update"><Button color="primary" variant="contained" onClick={handleUpdate}>Update</Button></div>
     </div> : <Spinner />
 }
