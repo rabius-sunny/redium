@@ -49,7 +49,7 @@ export default function Pagination({ path, count, page, perPage }) {
         }
     };
 
-    return (isNaN(totalPages) && count < 3) ? '' : (
+    return (isNaN(totalPages) || count < 3) ? '' : (
         <div className='pagination'>
             {prev()}
             {links()}

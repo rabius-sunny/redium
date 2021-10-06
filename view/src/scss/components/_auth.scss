@@ -40,12 +40,19 @@
     }
     .input {
         width: 100%;
+        .pass {
+            width: 500px !important;
+        }
     }
     input {
         width: 500px;
     }
+    
     @include responsive(largemobile) {
         input {
+            max-width: 400px;
+        }
+        .pass {
             max-width: 400px;
         }
     }
@@ -53,9 +60,15 @@
         input {
             max-width: 330px;
         }
+        .pass {
+            max-width: 330px;
+        }
     }
     @include responsive(mobile) {
         input {
+            max-width: 270px;
+        }
+        .pass {
             max-width: 270px;
         }
     }

@@ -1,16 +1,21 @@
 import { useEffect } from 'react'
+import axios from 'axios'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import Tooltip from '@mui/material/Tooltip'
+import EditIcon from '@mui/icons-material/Edit'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { fetchPosts } from '../redux/async/Post'
 import Pagination from '../utils/Pagination'
 import toast, { Toaster } from 'react-hot-toast'
-import { REDIRECT_FALSE, REMOVE_MESSAGE } from '../redux/constants/Post'
+import { REDIRECT_FALSE, REMOVE_MESSAGE, SET_LOADER, CLOSE_LOADER, SET_MESSAGE } from '../redux/constants/Post'
 import EditImage from '../components/others/EditImage'
 import Spinner from '../components/others/Spinner'
+import { Button } from '@mui/material'
 
 export default function MyProfile() {
 
-    const { user: { _id } } = useSelector(state => state.Auth)
+    const { user: { _id }, token } = useSelector(state => state.Auth)
     const dispatch = useDispatch()
     const { myposts, count, perPage } = useSelector(state => state.FetchMyPosts)
     const { redirect, message, loading } = useSelector(
@@ -19,6 +24,25 @@ export default function MyProfile() {
     let { post } = useParams()
     if (post === undefined) {
         post = 1
+    }
+    const handleDelete = async (id) => {
+        const confirm = window.confirm("Want to delete this post?")
+
+        if (confirm) {
+            dispatch({ type: SET_LOADER })
+            try {
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+                const { data: { message } } = await axios.get(`/delete/${id}`, config)
+                dispatch(fetchPosts(_id, post))
+                dispatch({ type: SET_MESSAGE, payload: message })
+            } catch (error) {
+                dispatch({ type: CLOSE_LOADER })
+            }
+        }
     }
 
     useEffect(() => {
@@ -52,9 +76,9 @@ export default function MyProfile() {
                 myposts.map(post => <div key={post._id} style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <h3><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></h3>
                     <div>
-                        <Link to={`/edit/${post._id}`}>Edit</Link>
+                        <Link to={`/edit/${post._id}`}><Tooltip title="Edit this post"><Button><EditIcon color="secondary" /></Button></Tooltip></Link>
                         <EditImage id={post._id} />
-                        <Link>Delete</Link>
+                        <Tooltip title="Delete this post"><Button onClick={() => handleDelete(post._id)}><DeleteForeverIcon color="error" /></Button></Tooltip>
                     </div>
                 </div>)
             }

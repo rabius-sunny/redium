@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { postLogin } from '../../redux/async/Auth'
 import { useHistory } from 'react-router'
-import { Button, TextField } from '@mui/material'
+import { Button, IconButton, Input, InputAdornment, TextField } from '@mui/material'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Link } from 'react-router-dom'
 
 export default function Login() {
@@ -15,6 +17,7 @@ export default function Login() {
         email: '',
         password: '',
     })
+    const [showPassword, setShowPassword] = useState(false)
     const handleInput = e => {
         setInput({
             ...input,
@@ -52,7 +55,24 @@ export default function Login() {
                 <div className="authBox__authHolder login">
                     <h1>Sign In</h1>
                     <div className="p-1 pb-2 mx-auto input"><TextField variant="standard" type="text" onChange={handleInput} placeholder="email" name="email" /></div>
-                    <div className="p-1 pb-2 mx-auto input"><TextField variant="standard" type="password" onChange={handleInput} placeholder="password" name="password" /></div>
+                    <div className="p-1 pb-2 mx-auto input"><Input
+                        variant="standard"
+                        type={showPassword ? 'text' : 'password'}
+                        onChange={handleInput}
+                        placeholder="password"
+                        name="password"
+                        className="pass"
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                    /></div>
                     <div className="input pb-1">Not a user? <Link to="/sign-up">Sign up</Link></div>
                     <Button variant="contained" className="input btn" onClick={handleSubmit}>{loading ? '...' : 'Sign In'}</Button>
                 </div>

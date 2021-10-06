@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
+import Tooltip from '@mui/material/Tooltip'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-// import { useParams, useHistory } from 'react-router-dom'
+import ImageIcon from '@mui/icons-material/Image'
 import { useSelector, useDispatch } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast'
 import { updateImageAction } from '../../redux/async/Post'
@@ -73,9 +74,11 @@ export default function EditImage({ id }) {
                     },
                 }}
             />
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Edit the Image
+            <Tooltip title="Update the post image">
+            <Button onClick={handleClickOpen}>
+                <ImageIcon color="primary" />
             </Button>
+            </Tooltip>
             <Dialog
                 open={open}
                 onClose={handleClose}

@@ -27,14 +27,14 @@ export default function Posts() {
             {!loading &&
                 posts.map((post, i) => <div className="home__posts" key={i}>
                     <div className="home__posts__header">
-                        <div className="avatar"><span>{post.userName[0]}</span></div>
+                        <div className="avatar"><span className="avatarText">{post.userName[0]}</span></div>
                         <div className="home__posts__header__info">
                             <p className="name">{post.userName}</p>
-                            <p className="time">{moment(post.updatedAt).format('MMM Do YY')}</p>
+                            <p className="time">{moment(post.updatedAt).format('MMM Do YY')} at {moment(post.updatedAt).format('h:mm a')}</p>
                         </div>
                     </div>
                     <p className="title"><strong><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></strong></p>
-                    <p className="post">{ReactHtmlParser(post.body.slice(0, 150))}...See more</p>
+                    <p className="post">{ReactHtmlParser(post.body.slice(0, 150))}<Link to={`/detail-post/${post.slug}`}>...See more</Link></p>
                     <div className="home__posts__image">
                         <img src={`/images/${post.image}`} alt="thumbnail" />
                     </div>

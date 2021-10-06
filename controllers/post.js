@@ -178,7 +178,8 @@ module.exports.postDetails = async (req, res) => {
 
     try {
         const post = await postModel.findOne({ slug: id })
-        return res.status(200).json({ post })
+        const comments = await commentModel.find({ postId: post._id }).sort({ updatedAt: -1 });
+        return res.status(200).json({ post, comments })
     } catch (error) {
         return res.status(500).json({ errors: error, message: error.message });
     }
@@ -195,6 +196,17 @@ module.exports.postComment = async (req, res) => {
             userName
         })
         return res.status(200).json({ message: 'Your comment has been published successfully' })
+    } catch (error) {
+        return res.status(500).json({ errors: error, message: error.message });
+    }
+}
+
+module.exports.deletePost = async (req, res) => {
+    const id = req.params.id
+
+    try {
+        const response = await postModel.findByIdAndRemove(id)
+        return res.status(200).json({message: 'Post deleted successfully'})
     } catch (error) {
         return res.status(500).json({ errors: error, message: error.message });
     }
