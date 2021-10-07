@@ -6,11 +6,11 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix view",
-    "clientInstall": "npm install --prefix view",
-    "build": "npm build --prefix view",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm run clientInstall && npm run build",
+    "client": "yarn start --prefix view",
+    "clientInstall": "yarn install --prefix view",
+    "build": "yarn build --prefix view",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "heroku-postbuild": "yarn run clientInstall && yarn run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rabius Sunny",
