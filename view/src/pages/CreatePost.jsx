@@ -85,9 +85,6 @@ export default function CreatePost() {
         // eslint-disable-next-line
     }, [createErrors, redirect])
 
-    console.log(input.image);
-
-
     return (
         <div className="createPost">
             <Helmet>

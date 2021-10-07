@@ -5,7 +5,6 @@ import Spinner from "../others/Spinner";
 
 
 export default function SinglePost({ post }) {
-    console.log(post);
 
     return post.userName !== undefined ? <div className="home__posts__holder">
         <Helmet>
