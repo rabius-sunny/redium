@@ -24,6 +24,14 @@ export default function Pagination({ path, count, page, perPage, loading }) {
                 </li>
             );
         }
+        if (store.length > 3) {
+            let newStore = []
+            const firstOne = store[0]
+            const secondOne = store[1]
+            const lastOne = store[store.length - 1]
+            newStore = [firstOne, secondOne, '. . .', lastOne]
+            return newStore
+        }
         return store;
     };
     const next = () => {

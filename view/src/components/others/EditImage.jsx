@@ -75,9 +75,9 @@ export default function EditImage({ id }) {
                 }}
             />
             <Tooltip title="Update the post image">
-            <Button onClick={handleClickOpen}>
-                <ImageIcon color="primary" />
-            </Button>
+                <Button onClick={handleClickOpen}>
+                    <ImageIcon color="primary" />
+                </Button>
             </Tooltip>
             <Dialog
                 open={open}
@@ -94,17 +94,15 @@ export default function EditImage({ id }) {
                         Choose an image (jpg, png, jpeg) and get preview.
                     </DialogContentText>
                     <div className="image__update">
-                        <div className=''>
-                            <label htmlFor='image' className='image__label'>
-                                {input.imageName}
-                            </label>
-                            <input
-                                type='file'
-                                name='image'
-                                id='image'
-                                onChange={fileHandle}
-                            />
-                        </div>
+                        <label htmlFor='image' className='image__label'>
+                            {input.imageName}
+                        </label>
+                        <input
+                            type='file'
+                            name='image'
+                            id='image'
+                            onChange={fileHandle}
+                        />
                         <div className=''>
                             <div className='imagePreivew'>
                                 {input.imagePreview ? <img src={input.imagePreview} alt="preview" /> : ''}

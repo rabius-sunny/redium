@@ -2,8 +2,14 @@
     background: $primary;
 
     .nav__title>a {
-        color: white !important;
-        font-size: 2.5rem;
+        color: $white !important;
+        font-size: 4rem;
+        font-family: 'Akronim', cursive;
+    }
+    @include responsive(mediummobile) {
+        .nav__title>a {
+            font-size: 2.5rem;
+        }
     }
     .appbar {
         background: $primary;

@@ -1,12 +1,15 @@
-.editPost {
-    h3 {
+.editPost, .createPost {
+    h3, h4 {
         font-size: 3rem;
         color: $secondary;
         text-align: center;
         margin: 20px 0;
     }
+    h4 {
+        font-size: 2.5rem;
+    }
     input, #description {
-        width: 50%;
+        width: 100%;
         display: block;
         border: 0;
         padding: 10px;
@@ -21,6 +24,22 @@
         display: block;
         font-weight: 600;
         color: $primary;
+    }
+    .imageLabel {
+        background: $secondary;
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+        color: $white;
+        font-size: 1.8rem;
+        margin: 10px 0;
+    }
+    #image {
+        display: none;
+    }
+    .preview {
+        border: 3px solid $primary;
+        margin: 10px 0;
     }
 
     input:focus, #description:focus {
@@ -50,9 +69,21 @@
     }
 }
 
+.image__update {
+    label {
+        background: $secondary;
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+        color: $white;
+    }
+    input {
+        display: none;
+    }
+}
 
 @include responsive(tablet) {
-    .editPost {
+    .editPost, .createPost {
         padding: 0 10px;
     }
 }

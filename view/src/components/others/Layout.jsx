@@ -21,6 +21,13 @@ export default function Layout(props) {
                 </div>
             </Fab>
         </ScrollTop>
-        <footer><Footer /></footer>
+        <footer>
+            <div className="container__nav__footer"><Footer /></div>
+            <div className="copyright">
+                <div className="container__nav__footer copyright__text">
+                    Develo<span className="love">v</span>ed by | <a href="https://rabius-sunny.netlify.app" target="_blank" rel="noreferrer">Rabius Sunny</a>
+                </div>
+            </div>
+        </footer>
     </MUITheme>
 }

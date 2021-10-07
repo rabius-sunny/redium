@@ -84,9 +84,11 @@ export default function CreatePost() {
         // eslint-disable-next-line
     }, [createErrors, redirect])
 
+    console.log(input.image);
+
 
     return (
-        <div className="editPost">
+        <div className="createPost">
             <h3>Create a post</h3>
             <Toaster
                 position='top-right'
@@ -107,6 +109,7 @@ export default function CreatePost() {
                 className='group__control'
                 placeholder='Post title...'
             />
+            <label htmlFor="image" className="imageLabel">{input.image.name || 'Choose an image'}</label>
             <input
                 type='file'
                 name='image'
@@ -146,16 +149,19 @@ export default function CreatePost() {
                 placeholder='Post URL...'
             />
             {slugButton ? (
-                <button class='btn btn-default' onClick={handleURL}>
+                <Button color="secondary" variant="contained" className="fs-4" onClick={handleURL}>
                     Update Slug
-                </button>
+                </Button>
             ) : (
                 ''
             )}
-            {imagePreview ? <img src={imagePreview} alt="preview" /> : ''}
+            {imagePreview ? <div>
+                <h4>Image Preview</h4>
+                <img src={imagePreview} className="preview" alt="preview" />
+            </div> : ''}
 
-            <div className="mt-2 mb-2">
-                <Button color="primary" className="fs-8" variant="contained" onClick={createPost}>{loading ? '...' : 'create post'}</Button>
+            <div className="mt-2 center mb-2">
+                <Button color="primary" className="w-100 fs-8" variant="contained" onClick={createPost}>{loading ? '...' : 'create post'}</Button>
             </div>
         </div>
     )

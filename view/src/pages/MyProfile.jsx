@@ -12,6 +12,7 @@ import { REDIRECT_FALSE, REMOVE_MESSAGE, SET_LOADER, CLOSE_LOADER, SET_MESSAGE }
 import EditImage from '../components/others/EditImage'
 import Spinner from '../components/others/Spinner'
 import { Button } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
 
 export default function MyProfile() {
 
@@ -92,7 +93,7 @@ export default function MyProfile() {
                             </div>
                         </div>)
                     }
-                    <div className="create"><Button variant="contained" color="primary" onClick={() => history.push('/create')}>Create a new post</Button></div>
+                    <div className="create"><Button variant="contained" color="primary" onClick={() => history.push('/create')}><AddIcon /> Create a new post</Button></div>
                 </div>
             }
 

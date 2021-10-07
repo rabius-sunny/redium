@@ -9,6 +9,12 @@
     margin: 0 auto;
 }
 
+@include responsive(tablet) {
+    .container__nav__footer {
+        padding: 0 20px;
+    }
+}
+
 a {
     color: $primary !important;
 }
@@ -19,4 +25,8 @@ a {
     &:hover {
         background: $primary__hover !important;
     }
+}
+
+.center {
+    text-align: center !important;
 }
