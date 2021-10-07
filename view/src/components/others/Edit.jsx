@@ -83,6 +83,7 @@ export default function Edit() {
             value={value}
             onChange={setValue}
         />
+        <label htmlFor="description">Edit Meta info.</label>
         <textarea
             name='description'
             id='description'

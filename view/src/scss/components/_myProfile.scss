@@ -27,6 +27,58 @@
             justify-content: space-between;
         }
     }
+
+    .profile {
+        text-align: center;
+        margin: 20px 0 10px 0;
+
+        .profileInfo {
+            display: flex;
+            justify-content: center;
+        }
+        p {
+            font-weight: 400;
+            font-size: 4rem;
+            margin: 10px 0;
+            color: $secondary;
+        }
+        h3 {
+            font-size: 3rem;
+            color: $primary;
+            margin-top: 20px;
+        }
+    }
+
+    .profileAvatar {
+        height: 100px;
+        width: 100px;
+    }
+    .profileAvatar::before {
+        content: '';
+        height: 100px;
+        width: 50px;
+        border-radius: 50px 0 0 50px;
+        background: $primary;
+    }
+    .profileAvatar::after {
+        content: '';
+        height: 100px;
+        width: 50px;
+        border-radius: 0 50px 50px 0;
+        background: $secondary;
+    }
+    .profileAvatarText {
+        font-size: 6rem !important;
+    }
+
+    .create {
+        text-align: center;
+        margin: 30px 0;
+        
+        button {
+            font-size: 1.6rem;
+        }
+    }
 }
 @include responsive(tablet) {
     .myProfile {

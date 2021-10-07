@@ -4,7 +4,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import Tooltip from '@mui/material/Tooltip'
 import EditIcon from '@mui/icons-material/Edit'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import { fetchPosts } from '../redux/async/Post'
 import Pagination from '../utils/Pagination'
 import toast, { Toaster } from 'react-hot-toast'
@@ -15,8 +15,9 @@ import { Button } from '@mui/material'
 
 export default function MyProfile() {
 
-    const { user: { _id }, token } = useSelector(state => state.Auth)
+    const { user: { _id, name }, token } = useSelector(state => state.Auth)
     const dispatch = useDispatch()
+    const history = useHistory()
     const { myposts, count, perPage } = useSelector(state => state.FetchMyPosts)
     const { redirect, message, loading } = useSelector(
         (state) => state.Post
@@ -62,7 +63,6 @@ export default function MyProfile() {
 
     return (
         <div className="myProfile">
-            <h1>My Profile</h1>
             <Toaster
                 position='top-center'
                 reverseOrder={false}
@@ -72,16 +72,31 @@ export default function MyProfile() {
                     },
                 }}
             />
+            <div className="profile">
+                <div className="profileInfo">
+                    <div className="profileAvatar"><span className="profileAvatarText">{name[0]}</span></div>
+                </div>
+                <p>{name.toUpperCase()}</p> <hr />
+                <h3>My Posts</h3>
+            </div>
+
             {loading ? <Spinner /> :
-                myposts.map(post => <div key={post._id} className="myPost">
-                    <p><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></p>
-                    <div className="actions">
-                        <Link to={`/edit/${post._id}`}><Tooltip title="Edit this post"><Button><EditIcon color="secondary" /></Button></Tooltip></Link>
-                        <EditImage id={post._id} />
-                        <Tooltip title="Delete this post"><Button onClick={() => handleDelete(post._id)}><DeleteForeverIcon color="error" /></Button></Tooltip>
-                    </div>
-                </div>)
+                <div>
+                    {
+                        myposts.map(post => <div key={post._id} className="myPost">
+                            <p><Link to={`/detail-post/${post.slug}`}>{post.title}</Link></p>
+                            <div className="actions">
+                                <Link to={`/edit/${post._id}`}><Tooltip title="Edit this post"><Button><EditIcon color="secondary" /></Button></Tooltip></Link>
+                                <EditImage id={post._id} />
+                                <Tooltip title="Delete this post"><Button onClick={() => handleDelete(post._id)}><DeleteForeverIcon color="error" /></Button></Tooltip>
+                            </div>
+                        </div>)
+                    }
+                    <div className="create"><Button variant="contained" color="primary" onClick={() => history.push('/create')}>Create a new post</Button></div>
+                </div>
             }
+
+
             <Pagination
                 count={count}
                 page={post}

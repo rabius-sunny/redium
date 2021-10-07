@@ -7,6 +7,7 @@
     }
     input, #description {
         width: 50%;
+        display: block;
         border: 0;
         padding: 10px;
         margin: 10px 0;
@@ -21,6 +22,7 @@
         font-weight: 600;
         color: $primary;
     }
+
     input:focus, #description:focus {
         outline: #1b2c5b7c solid 2px;
         background: $white;

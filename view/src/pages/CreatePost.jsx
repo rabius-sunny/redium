@@ -7,7 +7,7 @@ import 'react-quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
 import { Button } from '@mui/material'
 
-export default function CreatePost(props) {
+export default function CreatePost() {
 
     const history = useHistory()
     const { createErrors, redirect, loading } = useSelector(
@@ -86,8 +86,8 @@ export default function CreatePost(props) {
 
 
     return (
-        <>
-            <h1>Create a post</h1>
+        <div className="editPost">
+            <h3>Create a post</h3>
             <Toaster
                 position='top-right'
                 reverseOrder={false}
@@ -107,10 +107,6 @@ export default function CreatePost(props) {
                 className='group__control'
                 placeholder='Post title...'
             />
-
-            <label htmlFor='image' className='image__label'>
-                image
-            </label>
             <input
                 type='file'
                 name='image'
@@ -130,8 +126,7 @@ export default function CreatePost(props) {
             <textarea
                 name='description'
                 id='description'
-                cols='30'
-                rows='10'
+                rows='4'
                 defaultValue={input.description}
                 onChange={handleDescription}
                 className='group__control'
@@ -159,7 +154,9 @@ export default function CreatePost(props) {
             )}
             {imagePreview ? <img src={imagePreview} alt="preview" /> : ''}
 
-            <Button color="primary" onClick={createPost}>{loading ? '...' : 'create post'}</Button>
-        </>
+            <div className="mt-2 mb-2">
+                <Button color="primary" className="fs-8" variant="contained" onClick={createPost}>{loading ? '...' : 'create post'}</Button>
+            </div>
+        </div>
     )
 }
