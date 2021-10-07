@@ -1,4 +1,5 @@
 import moment from "moment";
+import Helmet from 'react-helmet'
 import ReactHtmlParser from 'react-html-parser'
 import Spinner from "../others/Spinner";
 
@@ -7,6 +8,13 @@ export default function SinglePost({ post }) {
     console.log(post);
 
     return post.userName !== undefined ? <div className="home__posts__holder">
+        <Helmet>
+            <title>{post.title} | Redium</title>
+            <meta property="og:title" content={` ${post.title} | Redium`} />
+            <meta property="og:description" content={post.body.slice(0, 150)} />
+            <meta property="og:url" content={`https://redium.herokuapp.com/detail-post/${post.slug}`} />
+            <meta property="og:image" content={post.image} />
+        </Helmet>
         <div className="home__posts detail__post">
             <div className="home__posts__header ps-1">
                 <div className="avatar"><span className="avatarText">{post.userName[0]}</span></div>

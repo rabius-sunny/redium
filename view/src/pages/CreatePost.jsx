@@ -6,6 +6,7 @@ import { createAction } from '../redux/async/Post'
 import 'react-quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
 import { Button } from '@mui/material'
+import Helmet from 'react-helmet'
 
 export default function CreatePost() {
 
@@ -89,6 +90,12 @@ export default function CreatePost() {
 
     return (
         <div className="createPost">
+            <Helmet>
+                <title>Create a post | Redium</title>
+                <meta property="og:title" content="Create a post | Redium" />
+                <meta property="og:description" content="Create a post into Redium, The Social Blogging Application with React, Redux, Nodejs" />
+                <meta property="og:url" content="https://redium.herokuapp.com/" />
+            </Helmet>
             <h3>Create a post</h3>
             <Toaster
                 position='top-right'

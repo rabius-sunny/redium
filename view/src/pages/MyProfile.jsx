@@ -13,6 +13,7 @@ import EditImage from '../components/others/EditImage'
 import Spinner from '../components/others/Spinner'
 import { Button } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
+import Helmet from 'react-helmet'
 
 export default function MyProfile() {
 
@@ -64,6 +65,12 @@ export default function MyProfile() {
 
     return (
         <div className="myProfile">
+            <Helmet>
+                    <title>Profile | Redium</title>
+                <meta property="og:title" content="Profile | Redium" />
+                <meta property="og:description" content="Welcome to Redium, The Social Blogging Application with React, Redux, Nodejs" />
+                <meta property="og:url" content="https://redium.herokuapp.com/" />
+            </Helmet>
             <Toaster
                 position='top-center'
                 reverseOrder={false}

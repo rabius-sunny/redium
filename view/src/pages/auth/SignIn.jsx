@@ -7,6 +7,7 @@ import { Button, IconButton, Input, InputAdornment, TextField } from '@mui/mater
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Link } from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 export default function Login() {
 
@@ -38,9 +39,15 @@ export default function Login() {
         }
         // eslint-disable-next-line
     }, [redirect])
-    console.log(redirect)
+
     return (
         <>
+            <Helmet>
+                    <title>Sign in | Redium</title>
+                <meta property="og:title" content="Sign in | Redium" />
+                <meta property="og:description" content="Sign in into Redium, The Social Blogging Application with React, Redux, Nodejs" />
+                <meta property="og:url" content="https://redium.herokuapp.com/sign-in" />
+            </Helmet>
             <Toaster
                 position='top-right'
                 reverseOrder={false}

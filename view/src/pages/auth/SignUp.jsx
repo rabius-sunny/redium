@@ -8,6 +8,7 @@ import { Button, IconButton, Input, InputAdornment } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Link, useHistory } from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 export default function SignUp() {
 
@@ -48,6 +49,12 @@ export default function SignUp() {
 
     return (
         <div>
+            <Helmet>
+                <title>Sign up | Redium</title>
+                <meta property="og:title" content="Sign up | Redium" />
+                <meta property="og:description" content="Sign up to Redium, The Social Blogging Application with React, Redux, Nodejs" />
+                <meta property="og:url" content="https://redium.herokuapp.com/sign-up" />
+            </Helmet>
             <Toaster
                 position='top-right'
                 reverseOrder={false}
