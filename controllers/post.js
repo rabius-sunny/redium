@@ -41,7 +41,7 @@ module.exports.createPost = (req, res) => {
         if (errors.length) {
             res.status(400).json({ errors })
         } else {
-            const newPath = __dirname + `/../view/public/images/${files.image.name}`
+            const newPath = __dirname + `/../view/build/images/${files.image.name}`
             fs.copyFile(files.image.path, newPath, async (error) => {
                 if (!error) {
                     try {
@@ -158,7 +158,7 @@ module.exports.updateImage = async (req, res) => {
         } if (imageErrors.length !== 0) {
             return res.status(400).json({ errors: imageErrors })
         } else {
-            const newPath = __dirname + `/../view/public/images/${files.image.name}`
+            const newPath = __dirname + `/../view/build/images/${files.image.name}`
             fs.copyFile(files.image.path, newPath, async (error) => {
                 if (!error) {
                     try {
