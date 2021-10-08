@@ -4,10 +4,12 @@ const connect = require('./config/dbConnection')
 const userRouter = require('./routes/user')
 const postRouter = require('./routes/post')
 const path = require('path')
+const cors = require('cors')
 const app = express()
 
 require('dotenv').config()
 app.use(bodyParser.json())
+app.use(cors())
 
 
 // connecting to mongodb database
